@@ -15,6 +15,6 @@ public class Dealer {
     }
 
     public int getScore() {
-        return cardList.stream().mapToInt(Card::getScore).sum();
+        return cardList.stream().mapToInt(Card::getScore).sum() + hiddenCard.getScore();
     }
 }
