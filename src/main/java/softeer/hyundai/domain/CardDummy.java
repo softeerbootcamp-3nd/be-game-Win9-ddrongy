@@ -1,6 +1,10 @@
 package softeer.hyundai.domain;
 
+import softeer.hyundai.utils.GameManager;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class CardDummy {
@@ -14,6 +18,14 @@ public class CardDummy {
                 cardList.add(new Card(cardValue));
             }
         }
+        Collections.shuffle(cardList);
+    }
 
+    public Card drawCard() {
+        if (cardList.isEmpty()) {
+            GameManager.gameState = false;
+            return null;
+        }
+        return cardList.remove(0);
     }
 }

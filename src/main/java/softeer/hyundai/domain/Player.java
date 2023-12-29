@@ -12,4 +12,8 @@ public class Player {
         }
         this.battingMoney = battingMoney;
     }
+
+    public void addCard(Card card) {
+        cardList.add(card);
+    }
 }
