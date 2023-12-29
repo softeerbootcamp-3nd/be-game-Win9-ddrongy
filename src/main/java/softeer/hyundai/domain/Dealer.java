@@ -19,6 +19,9 @@ public class Dealer {
     }
 
     public int getScore() {
+        if (hiddenCard == null) {
+            return cardList.stream().mapToInt(Card::getScore).sum();
+        }
         return cardList.stream().mapToInt(Card::getScore).sum() + hiddenCard.getScore();
     }
 
@@ -27,4 +30,9 @@ public class Dealer {
             System.out.print(card.getCardType() + " ");
         }
         System.out.println();
-    }}
+    }
+
+    public String getHiddenCard() {
+        return hiddenCard.getCardType();
+    }
+}

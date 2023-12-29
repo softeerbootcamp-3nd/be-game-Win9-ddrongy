@@ -33,13 +33,14 @@ public class GameController {
     }
 
     public void play() {
+        showCard();
         while (GameManager.isContinue()) {
-            showCard();
             System.out.println("Choose Option");
             int optionNumber = sc.nextInt();
 
             if (optionNumber == 1) {
                 gameState = false;
+                showHiddenCard();
             } else if (optionNumber == 2) {
                 player.addCard(cardDummy.drawCard());
                 drawDealerCard();
@@ -52,10 +53,18 @@ public class GameController {
                 gameState = false;
             }
 
+            showCard();
+
+
             if (isBlackJack() || isDead()) {
                 gameState = false;
+                showHiddenCard();
             }
         }
+    }
+
+    private void showHiddenCard() {
+        System.out.println("Hidden: " + dealer.getHiddenCard());
     }
 
     private void showCard() {
