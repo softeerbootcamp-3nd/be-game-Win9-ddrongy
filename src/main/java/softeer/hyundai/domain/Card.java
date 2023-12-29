@@ -12,4 +12,12 @@ public class Card {
     public int getScore() {
         return score;
     }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

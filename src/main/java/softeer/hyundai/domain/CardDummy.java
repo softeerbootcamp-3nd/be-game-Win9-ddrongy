@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class CardDummy {
-    private List<Card> cardList;
+    private List<Card> cardList = new ArrayList<>();
 
     public void initializeCards() {
         List<String> cards = List.of("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "K", "Q", "J");
