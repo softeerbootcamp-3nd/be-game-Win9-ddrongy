@@ -16,4 +16,9 @@ public class Player {
     public void addCard(Card card) {
         cardList.add(card);
     }
+
+    public int getScore() {
+        return cardList.stream().mapToInt(Card::getScore).sum();
+    }
+
 }

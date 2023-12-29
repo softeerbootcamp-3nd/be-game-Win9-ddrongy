@@ -8,4 +8,8 @@ public class Card {
         this.cardType = cardType;
         this.score = score;
     }
+
+    public int getScore() {
+        return score;
+    }
 }

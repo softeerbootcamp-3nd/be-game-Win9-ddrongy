@@ -13,4 +13,8 @@ public class Dealer {
     public void addHiddenCard(Card card) {
         this.hiddenCard = hiddenCard;
     }
+
+    public int getScore() {
+        return cardList.stream().mapToInt(Card::getScore).sum();
+    }
 }
