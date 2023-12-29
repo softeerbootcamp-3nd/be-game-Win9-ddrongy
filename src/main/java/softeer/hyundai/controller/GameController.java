@@ -14,17 +14,26 @@ public class GameController {
 
     private CardDummy cardDummy = new CardDummy();
 
-    public void init() {
+    public void init() throws IllegalAccessException {
         System.out.println("Batting your money");
-        try {
-            player.batMoney(Integer.parseInt(sc.nextLine()));
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        int betAmount = getValidBetAmount();
+        player.batMoney(betAmount);
         System.out.println(player.getBattingMoney() + "입니다.");
         cardDummy.initializeCards();
+        dealInitialCards();
+    }
 
-        System.out.println("--");
+    private int getValidBetAmount() {
+        while (true) {
+            try {
+                return Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input, please enter a number.");
+            }
+        }
+    }
+
+    private void dealInitialCards() {
         player.addCard(cardDummy.drawCard());
         player.addCard(cardDummy.drawCard());
 
@@ -37,29 +46,40 @@ public class GameController {
         while (GameManager.isContinue()) {
             System.out.println("Choose Option");
             int optionNumber = sc.nextInt();
+            processPlayerOption(optionNumber);
+            showCard();
+            checkGameEndConditions();
+        }
+    }
 
-            if (optionNumber == 1) {
+    private void processPlayerOption(int optionNumber) {
+        switch (optionNumber) {
+            case 1:
                 gameState = false;
                 showHiddenCard();
-            } else if (optionNumber == 2) {
+                break;
+            case 2:
                 player.addCard(cardDummy.drawCard());
                 drawDealerCard();
-            } else if (optionNumber == 3) {
+                break;
+            case 3:
                 player.doubleDown();
                 player.addCard(cardDummy.drawCard());
                 gameState = false;
-            } else if (optionNumber == 4) {
+                break;
+            case 4:
                 player.surrender();
                 gameState = false;
-            }
+                break;
+            default:
+                System.out.println("Invalid option, please choose again.");
+        }
+    }
 
-            showCard();
-
-
-            if (isBlackJack() || isDead()) {
-                gameState = false;
-                showHiddenCard();
-            }
+    private void checkGameEndConditions() {
+        if (isBlackJack() || isDead()) {
+            gameState = false;
+            showHiddenCard();
         }
     }
 
