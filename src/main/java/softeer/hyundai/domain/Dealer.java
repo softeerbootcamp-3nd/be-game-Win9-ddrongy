@@ -9,4 +9,8 @@ public class Dealer {
     public void addCard(Card card) {
         cardList.add(card);
     }
+
+    public void addHiddenCard(Card card) {
+        this.hiddenCard = hiddenCard;
+    }
 }
